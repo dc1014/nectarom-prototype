@@ -1,0 +1,18 @@
+{
+  "name": "nectarom-prototype",
+  "version": "1.0.0",
+  "description": "CRUD API with JSON, Mongo, React Client",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://dc1014@bitbucket.org/dc1014/nectarom-prototype.git"
+  },
+  "author": "Daniel Casper",
+  "license": "ISC",
+  "dependencies": {
+    "hapi": "^8.2.0"
+  }
+}

@@ -4,13 +4,17 @@ var Hapi = require('hapi');
 var server = new Hapi.Server();
 server.connection({ 
     host: 'localhost', 
-    port: 8000 
+    port: process.env.PORT || 8080 
+});
+
+server.start(function() {
+	console.log("Server running at:", server.info.uri);
 });
 
 // Add the route
 server.route({
     method: 'GET',
-    path:'/hello', 
+    path:'/', 
     handler: function (request, reply) {
        reply('hello world');
     }

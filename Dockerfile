@@ -1,9 +1,12 @@
-FROM    centos:centos6
+FROM    ubuntu:latest
 
-# Enable EPEL for Node.js
-RUN     rpm -Uvh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+#Get Curl
+RUN sudo apt-get install -y curl
+COPY . /src
+# Get Setup for Node.js
+RUN     curl -sL https://deb.nodesource.com/setup | sudo bash -
 # Install Node.js and npm
-RUN     yum install -y npm
+RUN     sudo apt-get install -y nodejs
 
 # Bundle app source
 COPY . /src

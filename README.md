@@ -1,17 +1,17 @@
 # README #
 
 **STACK**
-* Node 
-* Hapi 
-* Backbone 
-* Mongo
+Node 
+Hapi 
+Backbone 
+Mongo
 
 *Considering JWT for auth*
 
 **SYSTEM**
-* Docker - FROM ubuntu:latest
+Docker - FROM ubuntu:latest
 
 **TOOLS**
-* NPM 
-* GULP
-* SASS
+NPM 
+GULP
+SASS

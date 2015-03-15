@@ -1,7 +1,5 @@
 var Path = require('path');
 
-global.__base = __dirname + '/';
-
 exports.init = function(server) {
 	console.log('Loading all routes');
 

@@ -13,6 +13,9 @@
   "author": "Daniel Casper",
   "license": "ISC",
   "dependencies": {
-    "hapi": "^8.2.0"
+    "hapi": "^8.2.0",
+    "hapi-mongodb": "^2.3.0",
+    "joi": "^6.0.8",
+    "mongoose": "^3.8.25"
   }
 }

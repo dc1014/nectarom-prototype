@@ -8,3 +8,5 @@ cd nectarom-prototype/
 npm install
 
 node app.js
+
+.

@@ -30,15 +30,17 @@ RUN     curl -sL https://deb.nodesource.com/setup | sudo bash -
 RUN apt-get install -y nodejs git git-core
 
 #add startup script to container
-ADD start.sh /tmp/
+#ADD start.sh /tmp/
 
 #make startup script executable
-RUN chmod +x /tmp/start.sh
+#RUN chmod +x /tmp/start.sh
 
-CMD ./tmp/start.sh
+#CMD ./tmp/start.sh
 
 # Bundle app source
 #COPY . /src
 
+RUN cd /src; npm install
+
 EXPOSE  8080
-#CMD ["node", "/src/app.js"]
+CMD ["node", "/src/app.js"]

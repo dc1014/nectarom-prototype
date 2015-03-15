@@ -10,6 +10,7 @@ module.exports = exports = function(server) {
 	exports.index(server);
 	exports.create(server);
 	exports.show(server);
+	exports.remove(server);
 };
 
 exports.index = function(server) {
@@ -55,6 +56,13 @@ exports.show = function (server) {
 	server.route({
   	method: 'GET',
     path: '/authors/{id}',
+    config: {
+    	validate: {
+    		params: {
+    			id: Joi.string().alphanum().min(5).required()
+    		}
+    	}
+    },
 		handler: function (request, reply) {
     	Author.findById(encodeURIComponent(request.params.id), function (err, author) {
       	if (!err && author) {
@@ -65,6 +73,33 @@ exports.show = function (server) {
 					} else {
 					reply(Boom.notFound());
 	    	}
+			});
+		}
+	})
+};
+
+exports.remove = function(server) {
+	server.route({
+		method: 'DELETE',
+		path: '/authors/{id}',
+		config: {
+			validate: {
+				params: {
+					id: Joi.string().alphanum().min(5).required()
+				}
+			}
+		},
+		handler: function(request, reply) {
+			Author.findById(encodeURIComponent(request.params.id), function(err, author) {
+				if(!err && author) {
+					author.remove();
+					reply( { message: "Author deleted"});
+				} else if(!err) {
+					reply(Boom.notFound());
+				} else {
+					console.log(err);
+					reply(Boom.badRequest("Could not delete author"));
+				}
 			});
 		}
 	})
@@ -86,30 +121,3 @@ function getErrorMessageFrom(err) {
 
     return errorMessage;
 }
-
-
-/* route array 
-[
-	{
-		method: 'GET',
-		path: '/authors',
-		config: {
-			handler: getAuthors
-
-			}
-		},
-
-	{
-		method: 'POST',
-		path: '/authors',
-		config: {
-			handler: function(request, reply){
-				reply('derp');
-			}
-		}
-	}
-]
-
-function getAuthors() {
-
-} */ 

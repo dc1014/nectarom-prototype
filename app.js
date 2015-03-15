@@ -1,6 +1,7 @@
 global.__base = __dirname + '/';
 
 var Hapi = require('hapi'),
+		Good = require('good'),
 		joi = require('joi'),
 		Path = require('path'),
 		Mongoose = require('mongoose'),
@@ -42,18 +43,6 @@ server.register({
 
 
 /*
-//junk data
-var authors = [
-{
-	author: 'vernor vinge',
-	book: 'a deepness in the sky'
-},
-{
-	author: 'robert heinlein',
-	book: 'the moon is a harsh mistress'
-}
-];
-
 server.route({
 	method: 'GET',
 	path: '/authors',
@@ -112,9 +101,24 @@ server.route({
 	}
 });
 */
-// Start the server
-server.start();
 
-server.start(function() {
-	console.log("Server running at:", server.info.uri);
+//good console for logging
+server.register({
+	register: Good,
+  options: {
+  	reporters: [{
+    	reporter: require('good-console'),
+      args:[{ log: '*', response: '*' }]
+		}]
+	}
+}, function (err) {
+	if (err) {
+  	throw err; // something bad happened loading the plugin
+	}
+
+	server.start();
+
+	server.start(function() {
+		console.log("Server running at:", server.info.uri);
+	});
 });

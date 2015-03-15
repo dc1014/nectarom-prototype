@@ -17,9 +17,6 @@ server.connection({
 	port: Number(process.env.port || 8080),
 });
 
-//var baseRoutes = require(Path.join(__base, '/app/routes/baseRoutes')),
-//		authorRoutes = require(Path.join(__base, 'authorRoutes'));
-
 routes.init(server);
 
 //server.route(authorRoutes);

@@ -1,6 +1,8 @@
 var Joi = require('joi'),
-		Author = require('../models/author').Author,
-		Boom = require('boom');
+		Path = require('path'),
+		Boom = require('boom'),
+		Author = require(Path.join(__dirname, '/../models/author')).Author;
+
 
 //see http://stackoverflow.com/a/7142924/5210
 module.exports = exports = function(server) {

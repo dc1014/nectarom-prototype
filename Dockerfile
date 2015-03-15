@@ -38,7 +38,7 @@ RUN apt-get install -y nodejs git git-core
 #CMD ./tmp/start.sh
 
 # Bundle app source
-#COPY . /src
+COPY . /src
 
 RUN cd /src; npm install
 

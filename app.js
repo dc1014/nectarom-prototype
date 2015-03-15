@@ -1,21 +1,12 @@
-var Hapi = require('hapi'),
-		joi = require('joi'),
-		Path = require('path');
-
 global.__base = __dirname + '/';
 
-var routes = require(Path.join(__base, 'routes')); 
+var Hapi = require('hapi'),
+		joi = require('joi'),
+		Path = require('path'),
+		Mongoose = require('mongoose'),
+		routes = require(Path.join(__base, 'app/routes/baseRoutes'));
 
-//prep mongo
-var dbOpts = {
-	"url" : "mongodb://localhost:27017/authors",
-	"options" : {
-		"db" : {
-			"native_parser" : false
-		}
-	}
-};
-
+Mongoose.connect('mongodb://localhost/nectaromPrototype');
 
 // Create a server with a host and port
 var server = new Hapi.Server();
@@ -26,6 +17,23 @@ server.connection({
 	port: Number(process.env.port || 8080),
 });
 
+//var baseRoutes = require(Path.join(__base, '/app/routes/baseRoutes')),
+//		authorRoutes = require(Path.join(__base, 'authorRoutes'));
+
+routes.init(server);
+
+//server.route(authorRoutes);
+
+/* using hapi-mongodb plugin
+var dbOpts = {
+	"url" : "mongodb://localhost:27017/authors",
+	"options" : {
+		"db" : {
+			"native_parser" : false
+		}
+	}
+};
+
 server.register({
     register: require('hapi-mongodb'),
     option: dbOpts
@@ -33,9 +41,7 @@ server.register({
 	if(err) {
 		console.log(err);
 	}
-});
-
-server.route(routes);
+}); */
 
 
 /*

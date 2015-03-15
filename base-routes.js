@@ -1,4 +1,4 @@
-var Types = require('hapi').Types;
+//var Types = require('hapi').Types;
 
 module.exports = [
 	{

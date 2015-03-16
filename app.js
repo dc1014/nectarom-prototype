@@ -116,9 +116,11 @@ server.register({
   	throw err; // something bad happened loading the plugin
 	}
 
-	server.start();
-
-	server.start(function() {
-		console.log("Server running at:", server.info.uri);
-	});
+	if(!module.parent) {
+		server.start(function() {
+			console.log("Server running at:", server.info.uri);
+		});
+	}
 });
+
+module.exports = server;

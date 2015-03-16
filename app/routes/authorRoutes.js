@@ -10,6 +10,7 @@ module.exports = exports = function(server) {
 	exports.index(server);
 	exports.create(server);
 	exports.show(server);
+	exports.update(server);
 	exports.remove(server);
 };
 
@@ -73,6 +74,42 @@ exports.show = function (server) {
 					} else {
 					reply(Boom.notFound());
 	    	}
+			});
+		}
+	})
+};
+
+exports.update = function(server) {
+	server.route({
+		method: 'PUT',
+		path: '/authors/{id}',
+		config: {
+			validate: {
+				params: {
+					id: Joi.string().alphanum().min(5).required()
+				}
+			}
+		},
+		handler: function(request, reply) {
+			Author.findById(encodeURIComponent(request.params.id), function(err, author) {
+				//refactor to loop through payload?
+				if(!err && author) {
+					if(request.payload.authorName) {
+						author.authorName = request.payload.authorName;
+					}
+					if(request.payload.book) {
+						author.book = request.payload.book ;
+					}
+
+					author.save();
+
+					reply(author);
+				} else if (err) {
+					console.log(err);
+					reply(Boom.notFound());
+				} else {
+					reply(Boom.notFound());
+				}
 			});
 		}
 	})

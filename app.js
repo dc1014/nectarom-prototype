@@ -1,9 +1,8 @@
-global.__base = __dirname + '/';
-
 var Hapi = require('hapi'),
 		Good = require('good'),
 		joi = require('joi'),
 		Path = require('path'),
+		__base = Path.join(__dirname, '/');
 		Mongoose = require('mongoose'),
 		routes = require(Path.join(__base, 'app/routes/baseRoutes'));
 
@@ -18,9 +17,34 @@ server.connection({
 	port: Number(process.env.port || 8080),
 });
 
+//initialize routes
 routes.init(server);
 
-//server.route(authorRoutes);
+
+
+//good console for logging
+server.register({
+	register: Good,
+  options: {
+  	reporters: [{
+    	reporter: require('good-console'),
+      args:[{ log: '*', response: '*' }]
+		}]
+	}
+}, function (err) {
+	if (err) {
+  	throw err; // something bad happened loading the plugin
+	}
+
+	if(!module.parent) {
+		server.start(function() {
+			console.log("Server running at:", server.info.uri);
+		});
+	}
+});
+
+module.exports = server;
+
 
 /* using hapi-mongodb plugin
 var dbOpts = {
@@ -101,26 +125,3 @@ server.route({
 	}
 });
 */
-
-//good console for logging
-server.register({
-	register: Good,
-  options: {
-  	reporters: [{
-    	reporter: require('good-console'),
-      args:[{ log: '*', response: '*' }]
-		}]
-	}
-}, function (err) {
-	if (err) {
-  	throw err; // something bad happened loading the plugin
-	}
-
-	if(!module.parent) {
-		server.start(function() {
-			console.log("Server running at:", server.info.uri);
-		});
-	}
-});
-
-module.exports = server;

@@ -1,10 +1,10 @@
 var Hapi = require('hapi'),
 		Path = require('path'),
 		settings = require('config'),
-		plugins = require('./plugins')
+		plugins = require('./plugins'),
+		Good = require('good'),
+		routes = require('./routes/routes.js'),
 		Mongoose = require('mongoose');
-
-Mongoose.connect(settings.db);
 
 // Create a server with a host and port
 var server = new Hapi.Server();
@@ -14,6 +14,8 @@ server.connection({
 	port: settings.port
 });
 
+module.exports = server;
+
 var setup = function(done){
 
 	//register all plugins
@@ -21,15 +23,28 @@ var setup = function(done){
 		if (err) {
 			throw err;
 		}
-			});
+	});
 
+	//add the routes
+	routes.init(server);
+
+	//add the database
+	Mongoose.connect(settings.db);
+
+	done();
 };
 
-//do not start server in test env	
-if(!module.parent) {
-	server.start(function() {
-	console.log("Server running at:", server.info.uri);
+var start = function(){
+	server.start(function()  {
+		server.log("Server running at:", server.info.uri);
 	});
 };
 
-module.exports = server;
+setup(function() {
+	if(!module.parent) {
+		start();
+	};
+});
+
+
+

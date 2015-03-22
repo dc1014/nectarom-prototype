@@ -8,10 +8,10 @@ exports.init = function(server) {
 //serve client app
   server.route({
   method: 'GET',
-  path: '/{path*}',
+  path: '/{p*}',
   handler: {
     directory: {
-      path: Path.join(__dirname, '../../public'),
+      path: Path.join(__dirname, '../public'),
       listing: false,
       index: true
       }

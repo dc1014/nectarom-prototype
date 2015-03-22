@@ -5,7 +5,7 @@ var Lab = require('lab'),
 		lab = exports.lab = Lab.script();
 
 
-lab.experiment("Authors", function() {
+lab.experiment("Tesing author api", function() {
 	//tests, yo
 	lab.test("should display author list", function(done) {
 		var options = {

@@ -1,5 +1,40 @@
 <!DOCTYPE html>
 <html>
-<head></head>
-<body><p>hi der</p></body>
-</html> 
+<head>
+	<meta charset="UTF-8">
+  <title>Backbone App</title>
+  <!--<script src="./dist/bundle.js"></script> -->
+  <link rel="stylesheet" href="dist/screen.css">
+</head>
+<body>
+
+<script id="authorTemplate" type="text/template">
+		<ul>
+    	<li><%= authorName %></li>
+      <li><%= book %></li>
+		</ul>
+		<button class="delete">Delete</button>
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
+<script src="http://documentcloud.github.com/backbone/backbone-min.js"></script>
+<script src="js/models/author.js"></script>
+<script src="js/collections/authors.js"></script>
+<script src="js/views/author.js"></script>
+<script src="js/views/authors.js"></script>
+<script src="js/app.js"></script>
+
+<div id="authors">
+
+    <form id="addAuthor" action="#">
+        <div>
+            <label for="authorName">Author Name: </label><input id="authorName" type="text" />
+            <label for="book">Book Title: </label><input id="book" type="text" />
+            <button id="add">Add</button>
+        </div>
+	</form>
+</div>
+
+</body>
+</html>

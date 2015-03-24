@@ -2,7 +2,6 @@ var Hapi = require('hapi'),
 		Path = require('path'),
 		settings = require('config'),
 		plugins = require('./plugins'),
-		Good = require('good'),
 		routes = require('./routes/routes.js'),
 		Mongoose = require('mongoose');
 
@@ -40,6 +39,7 @@ var start = function(){
 	});
 };
 
+//run setup, and only start server if not running tests
 setup(function() {
 	if(!module.parent) {
 		start();

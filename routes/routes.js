@@ -3,7 +3,7 @@ var Path = require('path');
 exports.init = function(server) {
 	console.log('Loading all routes');
 
-	require(Path.join(__dirname + '/authorRoutes'))(server);
+	require(Path.join(__dirname + '/author'))(server);
 
 //serve client app
   server.route({

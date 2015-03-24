@@ -1,3 +1,5 @@
+
+/*
 var app = app || {};
 
 app.AuthorsView = Backbone.View.extend({
@@ -23,4 +25,4 @@ app.AuthorsView = Backbone.View.extend({
 		});
 		this.$el.append(authorView.render().el);
 	}
-});
+});*/

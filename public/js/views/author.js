@@ -1,3 +1,12 @@
+var AuthorView = Backbone.View.extend({
+	render: function(){
+		var html = '<h3>' + this.model.get('authorName');
+		$(this.el).html(html);
+	}
+});
+
+var authorView = 
+/*
 var app = app || {};
 
 app.AuthorVIew = Backbone.View.extend({
@@ -24,4 +33,4 @@ app.AuthorVIew = Backbone.View.extend({
     //Delete view
     this.remove();
     },
-});
+});*/

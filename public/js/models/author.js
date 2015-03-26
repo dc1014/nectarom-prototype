@@ -1,33 +1,22 @@
-//can use get set and has after making instance of model
-
 var Author = Backbone.Model.extend({
+	
 	defaults: {
 		authorName: "",
 		book: ""
 	},
-	initialize: function(){
-		console.log('Initialized author model');
 
-		this.on('change:book', function() {
-		console.log('Yo, the bookname has changed to.');
-		});
-	},
+	url : function() {
+		return this.id ? '/authors/' + this.id : '/authors';
+	}
 
-	showAlert: function() {
-		alert('authorName:' + this.get('authorName'));
-	},
-
-	urlRoot: '/authors'
 });
 
-/*define([
-	'underscore',
-	'backbone'
-], function(_, Backbone) {
-	var AuthorModel = Backbone.Model.extend({
-		urlRoot: '/authors'
-	});
-	var author = new AuthorModel(authorName: 'vernor vinge');
-	author.fetch();
-	return AuthorModel;
-});*/
+var KassMorgan = new Author({
+	authorName: "Kass Morgan",
+});
+
+KassMorgan.set({book: "The 100"});
+
+KassMorgan.save();
+
+KassMorgan.get("book");

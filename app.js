@@ -35,7 +35,7 @@ var setup = function(done){
 
 var start = function(){
 	server.start(function()  {
-		server.log("Server running at:", server.info.uri);
+		server.log("Mah server running at:", server.info.uri);
 	});
 };
 

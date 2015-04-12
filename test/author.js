@@ -4,6 +4,8 @@ var Lab = require('lab'),
 		server = require(Path.join(__dirname, '/../')),
 		lab = exports.lab = Lab.script();
 
+var expect = Code.expect;
+
 lab.experiment("Tesing author api", function() {
 
 	lab.test("should display author list", function(done) {
@@ -15,9 +17,9 @@ lab.experiment("Tesing author api", function() {
 		server.inject(options, function(response) {
 			var result = response.result;
 
-			Code.expect(response.statusCode).to.equal(200);
-			Code.expect(result).to.be.instanceof(Array);
-			Code.expect(result).to.have.length(2);
+			expect(response.statusCode).to.equal(200);
+			expect(result).to.be.instanceof(Array);
+			expect(result).to.have.length(3);
 			done();
 		});
 	});

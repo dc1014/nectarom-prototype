@@ -15,7 +15,6 @@
   "dependencies": {
     "backbone": "^1.1.2",
     "boom": "^2.6.1",
-    "browserify": "^9.0.3",
     "config": "^1.12.0",
     "good": "^5.1.2",
     "good-console": "^4.1.0",
@@ -24,9 +23,11 @@
     "joi": "^6.0.8",
     "jquery": "^2.1.3",
     "mongoose": "^3.8.25",
+    "moonboots_hapi": "^4.0.2",
     "underscore": "^1.8.2"
   },
   "devDependencies": {
+    "browserify": "^9.0.3",
     "lab": "~5.5.0",
     "code": "~1.3.0"
   }

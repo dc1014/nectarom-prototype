@@ -3,10 +3,10 @@ var Path = require('path');
 exports.init = function(server) {
 	console.log('Loading all routes');
 
-	require(Path.join(__dirname + '/author'))(server);
+	require(Path.join(__dirname, 'author'))(server);
 
 //serve client app
-  server.route({
+/*  server.route({
   method: 'GET',
   path: '/{p*}',
   handler: {
@@ -16,5 +16,5 @@ exports.init = function(server) {
       index: true
       }
     }
-  });
+  });*/
 };
